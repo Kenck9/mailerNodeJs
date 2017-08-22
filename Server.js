@@ -76,5 +76,5 @@ function timeStamp() {
     }
   }
 // Return the formatted string
-  return date.join("/") + " " + time.join(":") + " " + suffix;
+  return date.join("/") + " " + time.join(":") + " " + suffix + " UTC";
 }
