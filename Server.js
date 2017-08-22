@@ -1,6 +1,7 @@
 var express=require('express');
 var nodemailer = require("nodemailer");
 var keys = require('./config/keys');
+var path = require('path');
 var app=express();
 
 /*
@@ -24,6 +25,7 @@ var smtpTransport = nodemailer.createTransport({
 /*------------------SMTP Over-----------------------------*/
 
 /*------------------Routing Started ------------------------*/
+app.use(express.static(path.join(__dirname +'/')));
 
 app.get('/',function(req,res){
 	res.sendfile('index.html');

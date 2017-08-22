@@ -1,66 +1,51 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Node.JS Email application</title>
+<link rel = "stylesheet" type = "text/css" href = "css/style.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
 	var from,to,subject,text;
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	$("#send_email").click(function(){
 		to=$("#to").val();
 		subject=$("#subject").val();
 		text=$("#content").val();
+		var atpos = to.indexOf("@");
+		var dotpos = to.lastIndexOf(".");
+		if(to =="" || to == " " || atpos<1 || dotpos<atpos+2 || dotpos+2>=to.length){
+						$("#message").text("Please Enter Valid E-mail.");
+		} else if( subject == "" || subject == " " || subject == "  "){
+				$("#message").text("Please Enter Subject.");
+		} else {
 		$("#message").text("Sending E-mail...Please wait");
 		$.get("/send",{to:to,subject:subject,text:text},function(data){
 		if(data=="sent")
-		{
-			$("#message").empty().html("<p>Your message have succesfull been sent to the Admin. Thank you!</p>");
+				{
+					$("#message").empty().html("<p>Your message have succesfull been sent to the Admin. Thank you!</p>");
+				}
+			});
 		}
-
-});
 	});
 });
 </script>
-<style>
-#container
-{
-	margin-left:400px;
-	margin-top:50px;
-}
-#to,#subject,#content
-{
-	font-family: "Segoe UI";
-	font-size:18px;
-	width:530px;
-}
-h1
-{
-	font-family: "Segoe UI";
-	font-size:40px;
-	color: #3b5998;
-}
-p
-{
-	color:green;
-}
-#send_email
-{
-	font-size:15px;
-	font-family: "Segoe UI";
-}
-#message
-{
-	font-size:18px;
-}
-</style>
 </head>
 <body>
 <div id="container">
-<h1>Mailer In Node.JS</h1>
-<input type="text" id="to" placeholder="Enter your Email Address"><br>
-<input type="text" id="subject" placeholder="Write Subject"><br>
-<textarea id="content" rows="5" cols="40" placeholder="Write what you want to send"></textarea><br>
-<button id="send_email">Send Email</button><br>
+<header>MAILER IN NODE.JS</header>
+
+<form id="form" class="topBefore" action="#">
+
+	<input id="to" type="text" placeholder="E-MAIL" required>
+	<input id="subject" type="text" placeholder="SUBJECT" required>
+	<textarea id="content" type="text" placeholder="MESSAGE" required></textarea>
+<input id="send_email" type="button" value="SEND!">
 <span id="message"></span>
+
+</form>
+
+
 </div>
 </body>
 </html>
