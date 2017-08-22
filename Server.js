@@ -34,7 +34,7 @@ app.get('/send',function(req,res){
     sender: "no-reply@appiloqueTestServer.com",
 		to : keys.user ,
 		subject : 'Sub: '+ req.query.subject + ' (' + dtt +')',
-		text : 'Client Email: '+ req.query.to + '\n' + 'Client Message: ' + req.query.text + '\nTimeStamp: ' + dtt
+		text : 'Client Email: '+ req.query.to + '\nClient Subject: '+ req.query.subject +'\n' + 'Client Message: ' + req.query.text + '\nTimeStamp: ' + dtt
 	}
 	console.log(mailOptions);
 	smtpTransport.sendMail(mailOptions, function(error, response){
