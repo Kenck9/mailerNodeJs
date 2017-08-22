@@ -20,6 +20,7 @@ on your browser (Google chrome, Firefox..)
 
 
 
-By DEFAULT, mailerNodeJs will send email to 'appiloquetest@gmail.com' 
-Email can be sent to other gmail account, by modifying user and pass at ./config/dev.js
+By DEFAULT, mailerNodeJs will send email to 'appiloquetest@gmail.com' .
+Email can be sent to other gmail account, by modifying user and pass at ./config/dev.js 
+[for security purposes, dev.js is only accessable from the original zip file sent in email]
 
